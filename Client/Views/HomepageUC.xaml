@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Client.Views.HomepageUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.Views"
+             xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:vw="clr-namespace:Client.Views"
+             xmlns:vm="clr-namespace:Client.ViewModels"
+             xmlns:vwuv="clr-namespace:Client.Views.UserViews"
+             xmlns:vmuv="clr-namespace:Client.ViewModels.UserViewModels"
+             Name="HomepagePhotoUC"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="600">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Grid Height="100" VerticalAlignment="Top" Background="#FF9C27B0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <materialDesign:PackIcon Kind="Camera" Foreground="White" Height="85" Width="85" VerticalAlignment="Center"/>
+                    <StackPanel Orientation="Vertical" Margin="20,0,0,10" Height="85" Width="200">
+                        <TextBlock Text="Hello" FontWeight="Bold" Foreground="White" FontSize="22" FontFamily="NirmalaUI" Height="25" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+                        <TextBlock Text="{Binding User.Username}" FontWeight="Bold" Foreground="White" FontSize="25" HorizontalAlignment="Center" FontFamily="NirmalaUI" Height="50" Width="200" Margin="0,0,0,10"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
+                    <Button Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=HomepagePhotoUC}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="40" Height="35" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White">
+                        <materialDesign:PackIcon Kind="Power" Height="30" Width="30"/>
+                    </Button>
+                    <TextBlock Text="Log Out" Foreground="White" FontFamily="Nirmala UI" VerticalAlignment="Center" FontSize="14" Margin="5,0,0,0"/>
+                </StackPanel>
+                <Separator Background="White" Height="10" Width="600" Margin="0,85,0,0"/>
+            </Grid>
+            <Grid Height="600" Background="White">
+                <dragablz:TabablzControl >
+                    <dragablz:TabablzControl.InterTabController>
+                        <dragablz:InterTabController/>
+                    </dragablz:TabablzControl.InterTabController>
+
+                    <TabItem Focusable="True" DataContext="{Binding viewModels[0]}">
+                        <TabItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Image" Foreground="White" Height="25" Width="20"/>
+                                <TextBlock Text="My Images" Foreground="White" FontFamily="Nirmala UI" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </TabItem.Header>
+                        <vwuv:MyImagesUC/>
+                    </TabItem>
+                    <TabItem DataContext="{Binding viewModels[1]}">
+                        <TabItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="ImagePlus" Foreground="White" Height="25" Width="20"/>
+                                <TextBlock Text="Add Image" Foreground="White" FontFamily="Nirmala UI" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </TabItem.Header>
+                        <vwuv:AddImageUC/>
+                    </TabItem>
+                    <TabItem DataContext="{Binding viewModels[2]}">
+                        <TabItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Account" Foreground="White" Height="25" Width="20"/>
+                                <TextBlock Text="Account details" Foreground="White" FontFamily="Nirmala UI" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </TabItem.Header>
+                        <vwuv:AccountDetailsUC/>
+                    </TabItem>
+                </dragablz:TabablzControl>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>
